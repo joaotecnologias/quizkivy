@@ -9,19 +9,7 @@ from kivy.uix.label import Label
 from kivy.graphics import Color, Rectangle
 from kivy.uix.boxlayout import BoxLayout
 from kivymd.uix.button import MDButton
-
-perguntas = [
-    {
-        "pergunta": "Qual artista é conhecido como 'O Síndico'?",
-        "opcoes": ["Caetano Veloso", "Belchior", "Tim Maia", "Jorge Ben Jor"],
-        "resposta": "Tim Maia"
-    },
-    {
-        'pergunta': "Quem compôs a música 'Águas de Março'?",
-        'opcoes': ["Adoniran Barbosa", "Gilberto Gil", "Tom Jobim", "Chico Buarque"],
-        'resposta': "Tom Jobim"
-    },
-]
+from kivy.uix.popup import Popup
 
 
 KV = '''
@@ -47,7 +35,7 @@ ScreenManager:
     MDButton:
         style: 'elevated'
         pos_hint: {'center_x': .34, 'center_y': .4}
-        on_release: app.go_to_quiz()
+        on_release: app.tela_quiz()
 
         MDButtonIcon:
             icon: 'play'
@@ -74,7 +62,7 @@ ScreenManager:
             spacing: 10
             padding: 10
             size_hint: (None, None)  
-            size: (550, 250)  
+            size: (490, 250)  
             pos_hint: {'center_x': 0.5, 'center_y': 0.64}
 
             canvas.before:
@@ -88,8 +76,41 @@ ScreenManager:
             text:  "Qual artista é conhecido como 'O Síndico'?"
             halign: 'center'
             pos_hint: {'center_x': 0.5, 'center_y': 0.7}
-            
-            
+
+
+                
+        MDButton:
+            style: 'elevated'
+            pos_hint: {'center_x': .23, 'center_y': .32}
+            on_release: app.checar_resposta('Caetano Veloso')
+            MDButtonText:
+                text: "Caetano Veloso"
+                text_color: rgba( 0/255, 0/255, 0/255, 1)
+
+
+        MDButton:
+            style: 'elevated'
+            pos_hint: {'center_x': .41, 'center_y': .32}
+            on_release: app.checar_resposta('Belchior')
+            MDButtonText:
+                text: "Belchior"
+                text_color: rgba( 0/255, 0/255, 0/255, 1)
+
+        MDButton:
+            style: 'elevated'
+            pos_hint: {'center_x': .59, 'center_y': .32}
+            on_release: app.checar_resposta('Jorge Ben Jor')
+            MDButtonText:
+                text: "Jorge Ben Jor"
+                text_color: rgba( 0/255, 0/255, 0/255, 1)
+
+        MDButton:
+            style: 'elevated'
+            pos_hint: {'center_x': .76, 'center_y': .32}
+            on_release: app.checar_resposta('Tim Maia')
+            MDButtonText:
+                text: "Tim Maia"
+                text_color: rgba( 0/255, 0/255, 0/255, 1)       
             '''
 
 
@@ -106,9 +127,20 @@ class QuizScreen(MDScreen):
 class QuizApp(MDApp):
     def build(self):
         return Builder.load_string(KV)
-    def go_to_quiz(self):
+    def tela_quiz(self):
         self.root.current = 'quiz'
-    
+
+    def checar_resposta(self, answer):
+        if answer == 'Tim Maia':
+            self.show_popup("Resposta Correta!")
+        else:
+            self.show_popup("Resposta Errada!")
+
+    def show_popup(self, message):
+        popup = Popup(title='Resultado',
+                      content=Label(text=message),
+                      size_hint=(0.6, 0.4))
+        popup.open()
 
         
     
