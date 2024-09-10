@@ -13,6 +13,7 @@ from kivy.uix.popup import Popup
 from kivy.clock import Clock
 from random import shuffle
 
+
 KV = '''
 ScreenManager:
     HomeScreen:
@@ -21,13 +22,14 @@ ScreenManager:
 <HomeScreen>:
     name: 'login'
     MDFloatLayout:
+        md_bg_color: rgba(173, 216, 230, 255)
     
-        Image:
-            source: "C:/Users/joao_/OneDrive/Área de Trabalho/fundo2.jpeg"
-            allow_stretch: True
-            keep_ratio: False
-            size_hint: 1, 1
-            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+      #  Image:
+       #     source: "C:/Users/joao_/OneDrive/Área de Trabalho/fundo2.jpeg"
+        #    allow_stretch: True
+         #   keep_ratio: False
+          #  size_hint: 1, 1
+           # pos_hint: {'center_x': 0.5, 'center_y': 0.5}
         
     Label:
         text: 'Bem Vindo, fã de MPB! Vamos testar seus conhecimentos?'
@@ -59,21 +61,22 @@ ScreenManager:
 <QuizScreen>:
     name: 'quiz'
     MDFloatLayout:
-        md_bg_color: [108/255, 255/255, 133/255, 1]
+        md_bg_color: [255/255, 214/255, 102/255, 1]
         MDBoxLayout:
             orientation: 'horizontal'
             spacing: 10
             padding: 10
             size_hint: (None, None)  
-            size: (490, 245)  
+            size: (550, 330)  
             pos_hint: {'center_x': 0.5, 'center_y': 0.64}
 
             canvas.before:
                 Color:
-                    rgba: 179/255, 229/255, 252/255, 1
-                Rectangle:
+                    rgba: 165/255, 255/255, 184/255, 1
+                RoundedRectangle:
                     pos: self.pos
                     size: self.size
+                    radius: [30]
 
         MDLabel:
             id: pergunta
@@ -83,8 +86,8 @@ ScreenManager:
             text_size: self.width, None
             size_hint_x: None
             width: 350
-            pos_hint: {'center_x': 0.5, 'center_y': 0.7}
-            font_size: '13sp'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.65}
+            font_size: '19sp'
 
         MDButton:
             id: opcao1
@@ -155,17 +158,27 @@ class QuizApp(MDApp):
              "opcoes": ["Toquinho e Gal Costa", "Vinícius de Moraes e Tom Jobim", "Vinícius de Moraes e Toquinho", "João Gilberto e Caetano Veloso"],
              "resposta": "Alternativa C"},
             
-            {"pergunta": "Quem é considerado o 'Rei da música brasileira'?",
-             "opcoes": ["Roberto Carlos", "Erasmo Carlos", "Oswaldo Montenegro", "Caetano Veloso"],
-             "resposta": "Alternativa A"},
+            {"pergunta": "Quem é a Rainha do Rock Brasileiro?",
+             "opcoes": ["Pitty", "Rita Lee", "Cássia Eler", "Gal Costa"],
+             "resposta": "Alternativa B"},
 
             {"pergunta": "Quem é o VERDADEIRO 'Rei da música brasileira'?",
-             "opcoes": ["Roberto Carlos", "Tim Maia", "Belchior", "Luiz Gonzaga"],
+             "opcoes": ["Erasmo Carlos", "Tim Maia", "Belchior", "Luiz Gonzaga"],
              "resposta": "Alternativa B"},
             
             {"pergunta": "Quem foi o músico brasileiro dono do pseudônimo 'Julinho da Adelaide'?",
              "opcoes": ["Chico Buarque", "Erasmo Carlos", "Milton Nascimento", "Adoniran Barbosa"],
              "resposta": "Alternativa A"},
+            
+            {"pergunta": "Qual é o álbum mais famoso da Nação Zumbi, lançado em 1994?",
+             "opcoes": ["Afrociberdelia", "Samba Esquema Noise", "Cabeça Dinossauro", "Da Lama ao Caos"],
+             "resposta": "Alternativa D"},
+
+            {"pergunta": "O álbum 'Clube da Esquina' foi composto por quais cantores brasileiros?",
+             "opcoes": ["Jorge Ben e Marisa Monte", "Djavan e Zé Ramalho", "Lô Borges e Milton Nascimento", "Lô Borges e Djavan"],
+             "resposta": "Alternativa C"},
+
+             
 
 
         ]
@@ -265,8 +278,5 @@ class QuizApp(MDApp):
         self.pontuacao_final.open()
 
     
-
-    
-
 if __name__ == '__main__':
     QuizApp().run()
