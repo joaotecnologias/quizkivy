@@ -2,11 +2,9 @@ from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivymd.uix.label import MDLabel
 from kivy.uix.screenmanager import ScreenManager, Screen
-from kivy.core.window import Window
 from kivymd.uix.floatlayout import MDFloatLayout
 from kivymd.uix.screen import MDScreen
 from kivy.uix.label import Label
-from kivy.graphics import Color, Rectangle
 from kivy.uix.boxlayout import BoxLayout
 from kivymd.uix.button import MDButton
 from kivy.uix.popup import Popup
@@ -24,12 +22,6 @@ ScreenManager:
     MDFloatLayout:
         md_bg_color: rgba(173, 216, 230, 255)
     
-      #  Image:
-       #     source: "C:/Users/joao_/OneDrive/Área de Trabalho/fundo2.jpeg"
-        #    allow_stretch: True
-         #   keep_ratio: False
-          #  size_hint: 1, 1
-           # pos_hint: {'center_x': 0.5, 'center_y': 0.5}
         
     Label:
         text: 'Bem Vindo, fã de MPB! Vamos testar seus conhecimentos?'
@@ -89,6 +81,18 @@ ScreenManager:
             pos_hint: {'center_x': 0.5, 'center_y': 0.65}
             font_size: '19sp'
 
+        MDLabel:
+            id: contador
+            text: "Pergunta 1/10"
+            pos_hint: {'right': 1, 'top': 1}
+            size_hint: None, None
+            size: dp(150), dp(40)
+            padding: [10, 10]
+            halign: 'right'
+            valign: 'top'
+            theme_text_color: "Custom"
+            text_color: [0, 0, 0, 1]
+
         MDButton:
             id: opcao1
             style: 'elevated'
@@ -134,6 +138,7 @@ class HomeScreen(MDScreen):
 
 class QuizScreen(MDScreen):
     pass
+
 
 class QuizApp(MDApp):
     def build(self):
@@ -201,10 +206,14 @@ class QuizApp(MDApp):
         tela_quiz = self.root.get_screen('quiz')
         info_pergunta = self.perguntas[self.indice_pergunta]
         
+            
+        
         pergunta_formatada = f"{info_pergunta['pergunta']}\n\nA) {info_pergunta['opcoes'][0]}   B) {info_pergunta['opcoes'][1]}   C) {info_pergunta['opcoes'][2]}   D) {info_pergunta['opcoes'][3]}"
         
         tela_quiz.ids.pergunta.text = pergunta_formatada    
-
+        tela_quiz.ids.contador.text = f"Pergunta {self.indice_pergunta + 1}/{len(self.perguntas)}"
+        
+        
     def checar_resposta(self, answer_id):
         if self.indice_pergunta >= len(self.perguntas):
             return
@@ -225,7 +234,7 @@ class QuizApp(MDApp):
             if self.tentativas == self.maxtentativas:
                 
                 self.show_popup('Você excedeu o limite de tentativas, passando para a próxima pergunta!')
-                
+                self.tentativas = 0
                 Clock.schedule_once(self.proxima_pergunta, 1)
             else:
                 self.show_popup('Resposta errada, você tem mais uma chance!')
@@ -259,12 +268,12 @@ class QuizApp(MDApp):
         pontuacao_texto = f'Você acertou {self.pontuacao} de {total_perguntas} perguntas.\n\n'
         
         if self.pontuacao <= 2:
-            resultado = 'Parece que você não sabe nada de MPB...'
+            resultado = 'Parece que você não sabe nada sobre MPB...'
         elif self.pontuacao <= 5:
             resultado = 'Você sabe um pouco sobre MPB, mas pode melhorar!'
         elif self.pontuacao >= 6:
             resultado = 'Você acertou a maioria! Com certeza é fã de MPB!'
-        if self.pontuacao == len(self.perguntas):
+        elif self.pontuacao == len(self.perguntas):
             resultado = 'Você é o maior fã de MPB de todos!! Parabéns!!'
         
         texto_popup = pontuacao_texto + resultado
