@@ -30,24 +30,51 @@ ScreenManager:
             source: 'C:/Users/joao_/.vscode/fundoinicio.png'
             allow_stretch: True
             keep_ratio: False
+    MDFloatLayout:
+    MDCard:
+        size_hint: None, None
+        size: "650dp", "80dp"
+        pos_hint: {"center_x": .5, "center_y": .75}
+        elevation: 0
+        md_bg_color: [1, 1, 1, 1]
 
-    Label:
-        text: 'Bem vindo, amante da música!'
-        pos_hint: {'center_y': .75}
-        halign: 'center'
-        font_size: '28sp'
-        bold: True
-        color: [0, 0, 0, 1]
-        font_name: 'C:/Users/joao_/OneDrive/Área de Trabalho/coisas/Poppins-SemiBoldItalic.ttf'
+        MDBoxLayout:
+            orientation: 'vertical'
+            padding: "16dp"
+            spacing: "8dp"    
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            Label:
+                text: 'Bem vindo, amante da música!'
+                pos_hint: {'center_y': .75}
+                halign: 'center'
+                font_size: '28sp'
+                bold: True
+                color: [0.2, 0.2, 0.6, 1]
+                font_name: 'C:/Users/joao_/OneDrive/Área de Trabalho/coisas/Poppins-SemiBoldItalic.ttf'
 
-    Label:
-        text: 'Escolha um quiz para jogar:'
-        pos_hint: {'center_y': .67}
-        halign: 'center'
-        font_size: '28sp'
-        bold: True
-        color: [0, 0, 0, 1] 
-        font_name: 'C:/Users/joao_/OneDrive/Área de Trabalho/coisas/Poppins-SemiBoldItalic.ttf'
+    MDCard:
+        size_hint: None, None
+        size: "650dp", "80dp"
+        pos_hint: {"center_x": .5, "center_y": .66}
+        elevation: 0
+        md_bg_color: [1, 1, 1, 1]
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            padding: "16dp"
+            spacing: "8dp"
+            pos_hint: {'center_x': .5, 'center_y': .5}
+
+            Label:
+                text: 'Escolha um quiz para jogar:'
+                pos_hint: {'center_y': .67}
+                halign: 'center'
+                font_size: '28sp'
+                bold: True
+                color: [0.2, 0.2, 0.6, 1] 
+                font_name: 'C:/Users/joao_/OneDrive/Área de Trabalho/coisas/Poppins-SemiBoldItalic.ttf'
+       
+        
            
 
     MDRectangleFlatIconButton:
