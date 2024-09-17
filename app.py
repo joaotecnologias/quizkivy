@@ -27,31 +27,31 @@ ScreenManager:
     name: 'login'
     MDFloatLayout:
         Image:
-            source: 'C:/Users/joao_/.vscode/fundogradiente.jpg'
+            source: 'C:/Users/joao_/.vscode/fundoinicio.png'
             allow_stretch: True
             keep_ratio: False
 
     Label:
         text: 'Bem vindo, amante da música!'
-        pos_hint: {'center_y': .91}
+        pos_hint: {'center_y': .75}
         halign: 'center'
-        font_size: '24sp'
+        font_size: '28sp'
         bold: True
-        color: [229/255, 229/255, 229/255, 1] 
+        color: [0, 0, 0, 1]
         font_name: 'C:/Users/joao_/OneDrive/Área de Trabalho/coisas/Poppins-SemiBoldItalic.ttf'
 
     Label:
         text: 'Escolha um quiz para jogar:'
-        pos_hint: {'center_y': .83}
+        pos_hint: {'center_y': .67}
         halign: 'center'
-        font_size: '24sp'
+        font_size: '28sp'
         bold: True
-        color: [229/255, 229/255, 229/255, 1] 
+        color: [0, 0, 0, 1] 
         font_name: 'C:/Users/joao_/OneDrive/Área de Trabalho/coisas/Poppins-SemiBoldItalic.ttf'
            
 
     MDRectangleFlatIconButton:
-        pos_hint: {'center_x': .29, 'center_y': .32}
+        pos_hint: {'center_x': .29, 'center_y': .45}
         size_hint: (0.40, 0.1)
         on_release: app.tela_quiz()
         icon: 'music'
@@ -62,8 +62,9 @@ ScreenManager:
         font_name: 'C:/Users/joao_/OneDrive/Área de Trabalho/coisas/Poppins-SemiBold.ttf'
 
     MDRectangleFlatIconButton:
-        pos_hint: {'center_x': .29, 'center_y': .20}
+        pos_hint: {'center_x': .29, 'center_y': .33}
         size_hint: (0.40, 0.1)
+        on_release: app.tela_rap()
         icon: 'headphones'
         text: 'Rap'
         md_bg_color: [1, 1, 1, 1]
@@ -72,7 +73,7 @@ ScreenManager:
         font_name: 'C:/Users/joao_/OneDrive/Área de Trabalho/coisas/Poppins-SemiBold.ttf'
     
     MDRectangleFlatIconButton:
-        pos_hint: {'center_x': .72, 'center_y': .32}
+        pos_hint: {'center_x': .72, 'center_y': .45}
         size_hint: (0.40, 0.1)
         on_release: app.tela_rock()
         icon: 'guitar-electric'
@@ -83,7 +84,7 @@ ScreenManager:
         font_name: 'C:/Users/joao_/OneDrive/Área de Trabalho/coisas/Poppins-SemiBold.ttf'
 
     MDRectangleFlatIconButton:
-        pos_hint: {'center_x': .72, 'center_y': .20}
+        pos_hint: {'center_x': .72, 'center_y': .33}
         size_hint: (0.40, 0.1)
         on_release: app.stop()
         icon: 'close'
@@ -201,7 +202,10 @@ ScreenManager:
 <RockScreen>:
     name: 'rock'
     MDFloatLayout:
-        md_bg_color: [28/255, 61/255, 90/255, 1]
+        Image:
+            source: 'C:/Users/joao_/.vscode/telarock.png'
+            keep_ratio: False
+            allow_stretch: True
        
         MDBoxLayout:
             orientation: 'horizontal'
@@ -310,6 +314,109 @@ ScreenManager:
 
 <RapScreen>
     name: 'rap'
+    MDFloatLayout:
+        Image:
+            source: 'C:/Users/joao_/.vscode/telarap.png'
+            keep_ratio: False
+            allow_stretch: True
+        MDBoxLayout:
+            orientation: 'horizontal'
+            spacing: 10
+            padding: 10
+            size_hint: (None, None)
+            size: (500, 280)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.64}
+
+            canvas.before:
+                Color:
+                    rgba: [245/255, 245/255, 245/255, 1]
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [30]
+        MDLabel:
+            id: perguntarap
+            text:  "Pergunta"
+            halign: 'center'
+            valign: 'middle'
+            text_size: self.width, None
+            size_hint_x: None
+            width: 350
+            pos_hint: {'center_x': 0.5, 'center_y': 0.65}
+            font_size: '18sp'
+            font_name: 'C:/Users/joao_/OneDrive/Área de Trabalho/coisas/Poppins-SemiBold.ttf'
+
+        MDLabel:
+            id: contadorrap
+            text: "Pergunta 1/10"
+            pos_hint: {'right': 1, 'center_y': 0.94}
+            size_hint: None, None
+            size: dp(150), dp(40)
+            padding: [10, 10]
+            halign: 'right'
+            valign: 'top'
+            theme_text_color: "Custom"
+            text_color: [0, 0, 0, 1]
+            font_name: 'C:/Users/joao_/.vscode/Poppins-Black.ttf'
+            
+
+        MDFillRoundFlatIconButton:
+            id: voltar
+            pos_hint: {'center_x': 0.08, 'center_y': 0.95}
+            size_hint: None, None
+            width: 100
+            height: 50
+            background_color: [0/255, 150/255, 136/255, 1]
+            on_release: app.tela_inicio()
+            text: "Voltar"
+            bold: True
+            icon: 'arrow-left'
+            md_bg_color: [1, 1, 1, 1]
+            text_color:[0, 0, 0, 1]
+            icon_color: [0, 0, 0, 1]
+
+
+        MDRaisedButton:
+            id: opcao1rap
+            pos_hint: {'center_x': .29, 'center_y': .32}
+            size_hint: (0.40, 0.1)
+            on_release: app.checar_resposta_rap('opcao1rap')
+            text: "Alternativa A"
+            md_bg_color: [0.84, 0.84, 0.84, 1]
+            text_color: [0, 0, 0, 1]
+            font_name: 'C:/Users/joao_/OneDrive/Área de Trabalho/coisas/Poppins-SemiBold.ttf'
+           
+
+        MDRaisedButton:
+            id: opcao2rap
+            pos_hint: {'center_x': .29, 'center_y': .20}
+            size_hint: (0.40, 0.1)
+            on_release: app.checar_resposta_rap('opcao2rap')
+            text: "Alternativa B"
+            md_bg_color: [0.84, 0.84, 0.84, 1]
+            text_color: [0, 0, 0, 1]
+            font_name: 'C:/Users/joao_/OneDrive/Área de Trabalho/coisas/Poppins-SemiBold.ttf'
+            
+
+        MDRaisedButton:
+            id: opcao3rap
+            pos_hint: {'center_x': .72, 'center_y': .32}
+            size_hint: (0.40, 0.1)
+            on_release: app.checar_resposta_rap('opcao3rap')
+            text: "Alternativa C"
+            md_bg_color: [0.84, 0.84, 0.84, 1]
+            text_color: [0, 0, 0, 1]
+            font_name: 'C:/Users/joao_/OneDrive/Área de Trabalho/coisas/Poppins-SemiBold.ttf'
+
+        MDRaisedButton:
+            id: opcao4rap
+            pos_hint: {'center_x': .72, 'center_y': .20}
+            size_hint: (0.40, 0.1)
+            on_release: app.checar_resposta_rap('opcao4rap')
+            text: "Alternativa D"
+            md_bg_color: [0.84, 0.84, 0.84, 1]
+            text_color: [0, 0, 0, 1]
+            font_name: 'C:/Users/joao_/OneDrive/Área de Trabalho/coisas/Poppins-SemiBold.ttf'
 '''
 
 class HomeScreen(MDScreen):
@@ -397,19 +504,78 @@ class QuizApp(MDApp):
             {"perguntarock": "Qual música de David Bowie ajudou a consolidar sua persona de Ziggy Stardust?",
              "opcoesrock": ["Life on Mars?", "Space Oddity", "Starman", "Heroes"],
              "respostarock": "Starman"},
+
+            {"perguntarock": "Qual banda lançou o álbum 'A Night at the Opera' em 1975?",
+             "opcoesrock": ["Queen", "The Rolling Stones", "The Beatles", "Yes"],
+             "respostarock": "Queen"},
+
+            {"perguntarock": "Qual banda é conhecida pelo álbum 'Rumours', lançado em 1977?",
+             "opcoesrock": ["The Police", "ABBA", "Fleetwood Mac", "Black Sabbath"],
+             "respostarock": "Fleetwood Mac"},
+            
+            {"perguntarock": "Qual artista é conhecido pelo álbum 'Purple Rain'?",
+             "opcoesrock": ["Prince", "Michael Jackson", "Stevie Wonder", "George Michael"],
+             "respostarock": "Prince"},
             
 
             
         ]
 
+        self.perguntasrap = [
+            {"perguntarap": "Qual álbum de Tyler, The Creator foi nomeado para um Grammy em 2019?",
+             "opcoesrap": ["Goblin", "Wolf", "Flower Boy", "Igor"],
+             "respostarap": "Igor"},
+            
+            {"perguntarap": "Qual rapper americano lançou o álbum Astroworld em 2018?",
+             "opcoesrap": ["Lil Uzi Vert", "Lil Yachty", "Travis Scott", "Post Malone"],
+             "respostarap": "Travis Scott"},
+            
+            {"perguntarap": "Qual rapper lançou o álbum DAMN. em 2017, que ganhou o Pulitzer Prize de Música?",
+             "opcoesrap": ["J. Cole", "Drake", "Kendrick Lamar", "Chance the Rapper"],
+             "respostarap": "Kendrick Lamar"},
+            
+            {"perguntarap": "Qual rapper lançou o álbum Life of Pablo em 2016?",
+             "opcoesrap": ["Jay Z", "Playboi Carti", "Pusha T", "Kanye West"],
+             "respostarap": "Kanye West"},
+             
+            {"perguntarap": "Qual rapper é conhecido pelo álbum The Slim Shady LP e pelo sucesso de Lose Yourself?",
+             "opcoesrap": ["Eminem", "Nas", "Ice Cube", "Jay-Z"],
+             "respostarap": "Eminem"},
+
+            {"perguntarap": "Qual é o nome verdadeiro de Eminem?",
+             "opcoesrap": ["Marshall Mathers", "Curtis Jackson", "Shawn Carter", "Calvin Broadus"],
+             "respostarap": "Marshall Mathers"},
+        
+            {"perguntarap": "Qual rapper é conhecido pelo seu alter ego 'Yeezy'?",
+             "opcoesrap": ["50 Cent", "Kanye West", "Lil Wayne", "MF Doom"],
+             "respostarap": "Kanye West"},
+
+            {"perguntarap": "Quem é o rapper famoso pelo álbum 'Awaken, My Love!'?",
+             "opcoesrap": ["Snoop Dog", "Donald Glover (Childish Gambino)", "Dr. Dre", "Tupac"],
+             "respostarap": "Donald Glover (Childish Gambino)"},
+
+            {"perguntarap": "Qual artista colaborou com Rihanna no hit 'Umbrella'?",
+             "opcoesrap": ["Eminem", "The Notorious B.I.G.", "Kanye West", "Jay-Z"],
+             "respostarap": "Jay-Z"},
+
+            {"perguntarap": "Qual rapper lançou o álbum 'Graduation' em 2007?",
+             "opcoesrap": ["T.I.", "50 Cent", "Kanye West", "Lil Wayne"],
+             "respostarap": "Kanye West"},
+            
+            
+
+        ]
 
         shuffle(self.perguntas)
         shuffle(self.perguntasrock)
+        shuffle(self.perguntasrap)
         self.indice_pergunta = 0
         self.indice_pergunta_rock = 0
-        self.pontuacao_rock = 0
+        self.indice_pergunta_rap = 0
         self.dialog = None
         self.pontuacao = 0
+        self.pontuacao_rock = 0
+        self.pontuacao_rap = 0
         self.tentativas = 0
         self.maxtentativas = 2
         return Builder.load_string(KV)
@@ -442,7 +608,7 @@ class QuizApp(MDApp):
 
         if answer == resposta_correta:
             self.animar_botao(resposta_botao, True)
-            self.show_dialog('Resposta correta!!')
+            self.mostrar_dialog('Resposta correta!!')
             self.pontuacao += 1
             Clock.schedule_once(self.proxima_pergunta, 1.6)
             self.tentativas = 0
@@ -450,11 +616,11 @@ class QuizApp(MDApp):
             self.animar_botao(resposta_botao, False)
             self.tentativas += 1
             if self.tentativas >= self.maxtentativas:
-                self.show_dialog('Você excedeu o limite de tentativas, passando para a próxima pergunta!')
+                self.mostrar_dialog('Você excedeu o limite de tentativas, passando para a próxima pergunta!')
                 self.tentativas = 0
                 Clock.schedule_once(self.proxima_pergunta, 1.6)
             else:
-                self.show_dialog('Resposta errada, você tem mais uma chance!')
+                self.mostrar_dialog('Resposta errada, você tem mais uma chance!')
                 Clock.schedule_once(self.fechar_dialog, 1.6)
 
     def proxima_pergunta(self, *args):
@@ -471,18 +637,6 @@ class QuizApp(MDApp):
         else:
             self.mostrar_pontuacao_final()
 
-    def show_dialog(self, message):
-        if self.dialog:
-            self.dialog.dismiss()
-        self.dialog = MDDialog(
-            title='Resultado',text = message,
-            auto_dismiss=False, 
-        )
-        self.dialog.open()
-
-    def fechar_dialog(self, dt):
-        if self.dialog:
-            self.dialog.dismiss()
 
     def mostrar_pontuacao_final(self):
         total_perguntas = len(self.perguntas)
@@ -539,7 +693,7 @@ class QuizApp(MDApp):
 
         if answer == resposta_correta:
             self.animar_botao_rock(resposta_botao_rock, True)
-            self.show_dialog('Resposta correta!!')
+            self.mostrar_dialog('Resposta correta!!')
             self.pontuacao_rock += 1
             Clock.schedule_once(self.proxima_pergunta_rock, 1.6)
             self.tentativas = 0
@@ -547,11 +701,11 @@ class QuizApp(MDApp):
             self.animar_botao_rock(resposta_botao_rock, False)
             self.tentativas += 1
             if self.tentativas >= self.maxtentativas:
-                self.show_dialog('Você excedeu o limite de tentativas, passando para a próxima pergunta!')
+                self.mostrar_dialog('Você excedeu o limite de tentativas, passando para a próxima pergunta!')
                 self.tentativas = 0
                 Clock.schedule_once(self.proxima_pergunta_rock, 1.6)
             else:
-                self.show_dialog('Resposta errada, você tem mais uma chance!')
+                self.mostrar_dialog('Resposta errada, você tem mais uma chance!')
                 Clock.schedule_once(self.fechar_dialog, 1.6)
 
 
@@ -562,7 +716,7 @@ class QuizApp(MDApp):
         tela_rock = self.root.get_screen('rock')
         botoes_rock = [tela_rock.ids.opcao1rock, tela_rock.ids.opcao2rock, tela_rock.ids.opcao3rock, tela_rock.ids.opcao4rock]
         for botao in botoes_rock:
-            botao.md_bg_color = [0.9, 0.65, 0.35, 1]  
+            botao.md_bg_color = [0.84, 0.84, 0.84, 1]  
 
         self.indice_pergunta_rock += 1
 
@@ -598,6 +752,95 @@ class QuizApp(MDApp):
         self.dialog.open()
 
 
+    def carregar_pergunta_rap(self):
+        if self.indice_pergunta_rap >= len(self.perguntasrap):
+            return
+
+        tela_rap = self.root.get_screen('rap')
+        info_pergunta_rap = self.perguntasrap[self.indice_pergunta_rap]
+
+        pergunta_formatada = f"{info_pergunta_rap['perguntarap']}"
+        tela_rap.ids.perguntarap.text = pergunta_formatada
+        tela_rap.ids.contadorrap.text = f"Pergunta {self.indice_pergunta_rap + 1}/{len(self.perguntasrap)}"
+
+        opcoes_rap = info_pergunta_rap['opcoesrap']
+        botoes_rap = [tela_rap.ids.opcao1rap, tela_rap.ids.opcao2rap, tela_rap.ids.opcao3rap, tela_rap.ids.opcao4rap]
+
+        for i, opcaorap in enumerate(opcoes_rap):
+            botoes_rap[i].text = opcaorap
+
+
+    def checar_resposta_rap(self, answer_id):
+        if self.indice_pergunta_rap >= len(self.perguntasrap):
+            return
+    
+        tela_rap = self.root.get_screen('rap')
+        resposta_botao_rap = tela_rap.ids[answer_id]
+        answer = resposta_botao_rap.text
+        resposta_correta = self.perguntasrap[self.indice_pergunta_rap]['respostarap']
+
+        if answer == resposta_correta:
+            self.animar_botao_rap(resposta_botao_rap, True)
+            self.mostrar_dialog('Resposta correta!!')
+            self.pontuacao_rap += 1
+            Clock.schedule_once(self.proxima_pergunta_rap, 1.6)
+            self.tentativas = 0
+        else:
+            self.animar_botao_rap(resposta_botao_rap, False)
+            self.tentativas += 1
+            if self.tentativas >= self.maxtentativas:
+                self.mostrar_dialog('Você excedeu o limite de tentativas, passando para a próxima pergunta!')
+                self.tentativas = 0
+                Clock.schedule_once(self.proxima_pergunta_rap, 1.6)
+            else:
+                self.mostrar_dialog('Resposta errada, você tem mais uma chance!')
+                Clock.schedule_once(self.fechar_dialog, 1.6)
+
+
+    def proxima_pergunta_rap(self, *args):
+        if self.dialog:
+            self.dialog.dismiss()
+    
+        tela_rap = self.root.get_screen('rap')
+        botoes_rap = [tela_rap.ids.opcao1rap, tela_rap.ids.opcao2rap, tela_rap.ids.opcao3rap, tela_rap.ids.opcao4rap]
+        for botao in botoes_rap:
+            botao.md_bg_color = [0.84, 0.84, 0.84, 1]  
+
+        self.indice_pergunta_rap += 1
+
+        if self.indice_pergunta_rap < len(self.perguntasrap):
+            self.carregar_pergunta_rap()
+        else:
+            self.mostrar_pontuacao_final_rap()
+
+
+    def mostrar_pontuacao_final_rap(self):
+        total_perguntas_rap = len(self.perguntasrap)
+        pontuacao_texto = f'Você acertou {self.pontuacao_rap} de {total_perguntas_rap} perguntas.\n\n'
+
+        if self.pontuacao_rap <= 2:
+            resultado = 'Parece que tu não manja nada de rap, parça...'
+        elif self.pontuacao_rap <= 5:
+            resultado = 'Tá suave, mas dá pra dar um grau...'
+        elif self.pontuacao_rap >= 6:
+            resultado = 'Po, tu sabe mesmo, ein!!'
+        elif self.pontuacao_rap == len(self.perguntasrock):
+            resultado = 'Você é BRABO. Sabe muito sobre rap!!!'
+
+        texto_dialog = pontuacao_texto + resultado
+
+        self.dialog = MDDialog(
+            title='Fim do Quiz!! Parabéns por chegar até aqui!',
+            text=texto_dialog,
+            buttons =[MDFlatButton(text='Início', on_release = lambda x: self.tela_inicio())],
+            auto_dismiss=True
+        )
+
+        self.dialog.open()
+
+    
+
+
 
     def tela_inicio(self, *args):
         if self.dialog:
@@ -606,12 +849,14 @@ class QuizApp(MDApp):
         self.root.current = 'login'
         self.indice_pergunta = 0
         self.indice_pergunta_rock = 0
+        self.indice_pergunta_rap = 0
         self.pontuacao = 0
         self.pontuacao_rock = 0
+        self.pontuacao_rap = 0
         self.tentativas = 0
         shuffle(self.perguntas)
         shuffle(self.perguntasrock)
-        
+        shuffle(self.perguntasrap)
 
     def tela_rock(self):
         self.root.transition.direction = 'left'
@@ -622,6 +867,11 @@ class QuizApp(MDApp):
         self.root.transition.direction = 'left'
         self.root.current = 'quiz'
         self.carregar_pergunta()
+    
+    def tela_rap(self):
+        self.root.transition.direction = 'left'
+        self.root.current = 'rap'
+        self.carregar_pergunta_rap()
 
     def animar_botao(self, botao, correto):
         cor_resposta = [0, 1, 0, 1] if correto else [1, 0, 0, 1]
@@ -636,6 +886,27 @@ class QuizApp(MDApp):
         anim = Animation(md_bg_color=cor_resposta, duration=1)
         anim.bind(on_complete=lambda *args: Animation(md_bg_color=cor_padrao, duration=1).start(botao))
         anim.start(botao)
+
+    def animar_botao_rap(self, botao, correto):
+        cor_resposta = [0, 1, 0, 1] if correto else [1, 0, 0, 1]
+        cor_padrao = [0.84, 0.84, 0.84, 1]
+        anim = Animation(md_bg_color=cor_resposta, duration=1)
+        anim.bind(on_complete=lambda *args: Animation(md_bg_color=cor_padrao, duration=1).start(botao))
+        anim.start(botao)
+
+    def mostrar_dialog(self, message):
+        if self.dialog:
+            self.dialog.dismiss()
+        self.dialog = MDDialog(
+            title='Resultado',text = message,
+            auto_dismiss=False, 
+        )
+        self.dialog.open()
+        
+
+    def fechar_dialog(self, dt):
+        if self.dialog:
+            self.dialog.dismiss()
 
     
 
