@@ -30,13 +30,6 @@ ScreenManager:
             source: 'C:/Users/joao_/.vscode/fundogradiente.jpg'
             allow_stretch: True
             keep_ratio: False
-        Image:
-            source: 'C:/Users/joao_/.vscode/discosfundo.png'
-            allow_stretch: True
-            keep_ratio: False
-            pos_hint: {'center_x': 0.5, 'center_y': 0.59}
-            size_hint: (0.70, 0.45)
-
 
     Label:
         text: 'Bem vindo, amante da música!'
@@ -71,19 +64,19 @@ ScreenManager:
     MDRectangleFlatIconButton:
         pos_hint: {'center_x': .29, 'center_y': .20}
         size_hint: (0.40, 0.1)
-        on_release: app.tela_rock()
-        icon: 'guitar-electric'
-        text: 'Rock'
+        icon: 'headphones'
+        text: 'Rap'
         md_bg_color: [1, 1, 1, 1]
         text_color: [0.2, 0.2, 0.6, 1]
         icon_color: [0, 0, 0, 1]
         font_name: 'C:/Users/joao_/OneDrive/Área de Trabalho/coisas/Poppins-SemiBold.ttf'
     
     MDRectangleFlatIconButton:
-        size_hint: (0.40, 0.1)
         pos_hint: {'center_x': .72, 'center_y': .32}
-        icon: 'headphones'
-        text: 'Rap'
+        size_hint: (0.40, 0.1)
+        on_release: app.tela_rock()
+        icon: 'guitar-electric'
+        text: 'Rock'
         md_bg_color: [1, 1, 1, 1]
         text_color: [0.2, 0.2, 0.6, 1]
         icon_color: [0, 0, 0, 1]
@@ -208,10 +201,7 @@ ScreenManager:
 <RockScreen>:
     name: 'rock'
     MDFloatLayout:
-        Image:
-            source: 'C:/Users/joao_/Downloads/testefundo.jpg'
-            allow_stretch: True
-            keep_ratio: False
+        md_bg_color: [28/255, 61/255, 90/255, 1]
        
         MDBoxLayout:
             orientation: 'horizontal'
@@ -223,7 +213,7 @@ ScreenManager:
 
             canvas.before:
                 Color:
-                    rgba: [245/255, 245/255, 220/255, 1]
+                    rgba: [192/255, 192/255, 192/255, 1]
                 RoundedRectangle:
                     pos: self.pos
                     size: self.size
@@ -279,7 +269,7 @@ ScreenManager:
             size_hint: (0.40, 0.1)
             on_release: app.checar_resposta_rock('opcao1rock')
             text: "Alternativa A"
-            md_bg_color: [0.9, 0.65, 0.35, 1]
+            md_bg_color: [0.84, 0.84, 0.84, 1]
             text_color: [0, 0, 0, 1]
             font_name: 'C:/Users/joao_/OneDrive/Área de Trabalho/coisas/Poppins-SemiBold.ttf'
            
@@ -290,7 +280,7 @@ ScreenManager:
             size_hint: (0.40, 0.1)
             on_release: app.checar_resposta_rock('opcao2rock')
             text: "Alternativa B"
-            md_bg_color: [0.9, 0.65, 0.35, 1]
+            md_bg_color: [0.84, 0.84, 0.84, 1]
             text_color: [0, 0, 0, 1]
             font_name: 'C:/Users/joao_/OneDrive/Área de Trabalho/coisas/Poppins-SemiBold.ttf'
             
@@ -301,7 +291,7 @@ ScreenManager:
             size_hint: (0.40, 0.1)
             on_release: app.checar_resposta_rock('opcao3rock')
             text: "Alternativa C"
-            md_bg_color: [0.9, 0.65, 0.35, 1]
+            md_bg_color: [0.84, 0.84, 0.84, 1]
             text_color: [0, 0, 0, 1]
             font_name: 'C:/Users/joao_/OneDrive/Área de Trabalho/coisas/Poppins-SemiBold.ttf'
 
@@ -311,9 +301,11 @@ ScreenManager:
             size_hint: (0.40, 0.1)
             on_release: app.checar_resposta_rock('opcao4rock')
             text: "Alternativa D"
-            md_bg_color: [0.9, 0.65, 0.35, 1]
+            md_bg_color: [0.84, 0.84, 0.84, 1]
             text_color: [0, 0, 0, 1]
             font_name: 'C:/Users/joao_/OneDrive/Área de Trabalho/coisas/Poppins-SemiBold.ttf'
+
+            
 
 
 <RapScreen>
@@ -397,6 +389,14 @@ class QuizApp(MDApp):
             {"perguntarock": "Qual banda de rock dos anos 80 é famosa pelo álbum 'Thriller' e a canção 'Billie Jean'",
              "opcoesrock": ["America", "Supertramp", "The Police", "Não é uma banda, é o Michael Jackson"],
              "respostarock": "Não é uma banda, é o Michael Jackson"},
+
+            {"perguntarock": "Qual banda lançou o clássico álbum 'Hotel California' em 1976?",
+             "opcoesrock": ["Fleetwood Mac", "The Beach Boys", "Lynyrd Skynyrd", "Eagles"],
+             "respostarock": "Eagles"},
+            
+            {"perguntarock": "Qual música de David Bowie ajudou a consolidar sua persona de Ziggy Stardust?",
+             "opcoesrock": ["Life on Mars?", "Space Oddity", "Starman", "Heroes"],
+             "respostarock": "Starman"},
             
 
             
@@ -632,7 +632,7 @@ class QuizApp(MDApp):
 
     def animar_botao_rock(self, botao, correto):
         cor_resposta = [0, 1, 0, 1] if correto else [1, 0, 0, 1]
-        cor_padrao = [0.9, 0.65, 0.35, 1]  # Cor padrão ajustada conforme seu código
+        cor_padrao = [0.84, 0.84, 0.84, 1]
         anim = Animation(md_bg_color=cor_resposta, duration=1)
         anim.bind(on_complete=lambda *args: Animation(md_bg_color=cor_padrao, duration=1).start(botao))
         anim.start(botao)
