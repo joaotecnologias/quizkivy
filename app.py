@@ -292,6 +292,7 @@ ScreenManager:
             md_bg_color: [1, 1, 1, 1]
             text_color:[0, 0, 0, 1]
             icon_color: [0, 0, 0, 1]
+            font_name: "C:/Users/joao_/OneDrive/Área de Trabalho/coisas/Poppins-MediumItalic.ttf"
 
         
         MDRaisedButton:
@@ -401,6 +402,7 @@ ScreenManager:
             md_bg_color: [1, 1, 1, 1]
             text_color:[0, 0, 0, 1]
             icon_color: [0, 0, 0, 1]
+            font_name: "C:/Users/joao_/OneDrive/Área de Trabalho/coisas/Poppins-MediumItalic.ttf"
 
 
         MDRaisedButton:
