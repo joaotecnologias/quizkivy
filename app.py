@@ -20,25 +20,46 @@ KV = '''
 ScreenManager:
     HomeScreen:
     QuizScreen:
-    GeoScreen:
+    RockScreen:
+    RapScreen:
 
 <HomeScreen>:
     name: 'login'
     MDFloatLayout:
-        md_bg_color: [173/255, 216/255, 230/255, 1]
+        Image:
+            source: 'C:/Users/joao_/.vscode/fundogradiente.jpg'
+            allow_stretch: True
+            keep_ratio: False
+        Image:
+            source: 'C:/Users/joao_/.vscode/discosfundo.png'
+            allow_stretch: True
+            keep_ratio: False
+            pos_hint: {'center_x': 0.5, 'center_y': 0.59}
+            size_hint: (0.70, 0.45)
+
 
     Label:
-        text: 'Bem vindo, amante da música! Escolha um quiz para jogar:'
-        pos_hint: {'center_y': .8}
+        text: 'Bem vindo, amante da música!'
+        pos_hint: {'center_y': .91}
         halign: 'center'
         font_size: '24sp'
         bold: True
-        color: [32/255, 0/255, 66/255, 1]
+        color: [229/255, 229/255, 229/255, 1] 
         font_name: 'C:/Users/joao_/OneDrive/Área de Trabalho/coisas/Poppins-SemiBoldItalic.ttf'
 
-    MDFillRoundFlatIconButton:
-        pos_hint: {'center_x': .5, 'center_y': .5}
+    Label:
+        text: 'Escolha um quiz para jogar:'
+        pos_hint: {'center_y': .83}
         halign: 'center'
+        font_size: '24sp'
+        bold: True
+        color: [229/255, 229/255, 229/255, 1] 
+        font_name: 'C:/Users/joao_/OneDrive/Área de Trabalho/coisas/Poppins-SemiBoldItalic.ttf'
+           
+
+    MDRectangleFlatIconButton:
+        pos_hint: {'center_x': .29, 'center_y': .32}
+        size_hint: (0.40, 0.1)
         on_release: app.tela_quiz()
         icon: 'music'
         text: 'MPB'
@@ -47,20 +68,30 @@ ScreenManager:
         icon_color: [0, 0, 0, 1]
         font_name: 'C:/Users/joao_/OneDrive/Área de Trabalho/coisas/Poppins-SemiBold.ttf'
 
-    MDFillRoundFlatIconButton:
-        pos_hint: {'center_x': .5, 'center_y': .4}
-        halign: 'center'
-        on_release: app.tela_geo()
+    MDRectangleFlatIconButton:
+        pos_hint: {'center_x': .29, 'center_y': .20}
+        size_hint: (0.40, 0.1)
+        on_release: app.tela_rock()
         icon: 'guitar-electric'
         text: 'Rock'
         md_bg_color: [1, 1, 1, 1]
         text_color: [0.2, 0.2, 0.6, 1]
         icon_color: [0, 0, 0, 1]
         font_name: 'C:/Users/joao_/OneDrive/Área de Trabalho/coisas/Poppins-SemiBold.ttf'
+    
+    MDRectangleFlatIconButton:
+        size_hint: (0.40, 0.1)
+        pos_hint: {'center_x': .72, 'center_y': .32}
+        icon: 'headphones'
+        text: 'Rap'
+        md_bg_color: [1, 1, 1, 1]
+        text_color: [0.2, 0.2, 0.6, 1]
+        icon_color: [0, 0, 0, 1]
+        font_name: 'C:/Users/joao_/OneDrive/Área de Trabalho/coisas/Poppins-SemiBold.ttf'
 
-    MDFillRoundFlatIconButton:
-        pos_hint: {'center_x': .5, 'center_y': .2}
-        halign: 'center'
+    MDRectangleFlatIconButton:
+        pos_hint: {'center_x': .72, 'center_y': .20}
+        size_hint: (0.40, 0.1)
         on_release: app.stop()
         icon: 'close'
         text: 'Sair'
@@ -68,6 +99,8 @@ ScreenManager:
         text_color: [0.2, 0.2, 0.6, 1]
         icon_color: [0, 0, 0, 1]
         font_name: 'C:/Users/joao_/OneDrive/Área de Trabalho/coisas/Poppins-SemiBold.ttf'
+        
+
 
 <QuizScreen>:
     name: 'quiz'
@@ -172,8 +205,8 @@ ScreenManager:
             md_bg_color: [1, 1, 1, 1]
             font_name: 'C:/Users/joao_/OneDrive/Área de Trabalho/coisas/Poppins-SemiBoldItalic.ttf'
 
-<GeoScreen>:
-    name: 'geo'
+<RockScreen>:
+    name: 'rock'
     MDFloatLayout:
         Image:
             source: 'C:/Users/joao_/Downloads/testefundo.jpg'
@@ -197,7 +230,7 @@ ScreenManager:
                     radius: [30]
 
         MDLabel:
-            id: perguntageo
+            id: perguntarock
             text:  "Pergunta"
             halign: 'center'
             valign: 'middle'
@@ -211,7 +244,7 @@ ScreenManager:
         
 
         MDLabel:
-            id: contadorgeo
+            id: contadorrock
             text: "Pergunta 1/10"
             pos_hint: {'right': 1, 'center_y': 0.94}
             size_hint: None, None
@@ -240,43 +273,51 @@ ScreenManager:
             icon_color: [0, 0, 0, 1]
 
         
-        MDFillRoundFlatButton:
-            id: opcao1geo
-            pos_hint: {'center_x': .36, 'center_y': .32}
-            on_release: app.checar_resposta_geo('opcao1geo')
+        MDRaisedButton:
+            id: opcao1rock
+            pos_hint: {'center_x': .29, 'center_y': .32}
+            size_hint: (0.40, 0.1)
+            on_release: app.checar_resposta_rock('opcao1rock')
             text: "Alternativa A"
             md_bg_color: [0.9, 0.65, 0.35, 1]
             text_color: [0, 0, 0, 1]
             font_name: 'C:/Users/joao_/OneDrive/Área de Trabalho/coisas/Poppins-SemiBold.ttf'
            
 
-        MDFillRoundFlatButton:
-            id: opcao2geo
-            pos_hint: {'center_x': .36, 'center_y': .21}
-            on_release: app.checar_resposta_geo('opcao2geo')
+        MDRaisedButton:
+            id: opcao2rock
+            pos_hint: {'center_x': .29, 'center_y': .20}
+            size_hint: (0.40, 0.1)
+            on_release: app.checar_resposta_rock('opcao2rock')
             text: "Alternativa B"
             md_bg_color: [0.9, 0.65, 0.35, 1]
             text_color: [0, 0, 0, 1]
             font_name: 'C:/Users/joao_/OneDrive/Área de Trabalho/coisas/Poppins-SemiBold.ttf'
             
 
-        MDFillRoundFlatButton:
-            id: opcao3geo
-            pos_hint: {'center_x': .65, 'center_y': .32}
-            on_release: app.checar_resposta_geo('opcao3geo')
+        MDRaisedButton:
+            id: opcao3rock
+            pos_hint: {'center_x': .72, 'center_y': .32}
+            size_hint: (0.40, 0.1)
+            on_release: app.checar_resposta_rock('opcao3rock')
             text: "Alternativa C"
             md_bg_color: [0.9, 0.65, 0.35, 1]
             text_color: [0, 0, 0, 1]
             font_name: 'C:/Users/joao_/OneDrive/Área de Trabalho/coisas/Poppins-SemiBold.ttf'
 
-        MDFillRoundFlatButton:
-            id: opcao4geo
-            pos_hint: {'center_x': .65, 'center_y': .21}
-            on_release: app.checar_resposta_geo('opcao4geo')
+        MDRaisedButton:
+            id: opcao4rock
+            pos_hint: {'center_x': .72, 'center_y': .20}
+            size_hint: (0.40, 0.1)
+            on_release: app.checar_resposta_rock('opcao4rock')
             text: "Alternativa D"
             md_bg_color: [0.9, 0.65, 0.35, 1]
             text_color: [0, 0, 0, 1]
             font_name: 'C:/Users/joao_/OneDrive/Área de Trabalho/coisas/Poppins-SemiBold.ttf'
+
+
+<RapScreen>
+    name: 'rap'
 '''
 
 class HomeScreen(MDScreen):
@@ -285,7 +326,10 @@ class HomeScreen(MDScreen):
 class QuizScreen(MDScreen):
     pass
 
-class GeoScreen(MDScreen):
+class RockScreen(MDScreen):
+    pass
+
+class RapScreen(MDScreen):
     pass
 
 class QuizApp(MDApp):
@@ -333,46 +377,37 @@ class QuizApp(MDApp):
              "resposta": "Lô Borges e Milton Nascimento"},
         ]
 
-        self.perguntasgeografia = [
-            {"perguntageografia": "Qual é o maior país em extensão territorial?",
-             "opcoesgeografia": ["Estados Unidos", "China", "Rússia", "Canada"],
-             "respostageografia": "Rússia"},
-
-            {"perguntageografia": "Qual é o maior deserto do mundo?",
-             "opcoesgeografia": ["Antártica", "Kalahari", "Saara", "Atacama"],
-             "respostageografia": "Antártica"},
-
-            {"perguntageografia": "Qual é o país mais novo do mundo, criado em 2011?",
-             "opcoesgeografia": ["Timor-Leste", "Kosovo", "Sudão do Sul", "Eritreia"],
-             "respostageografia": "Sudão do Sul"},
-
-            {"perguntageografia": "Qual é a capital do Canadá?",
-             "opcoesgeografia": ["Ottawa", "Quebec", "Toronto", "Vancouver"],
-             "respostageografia": "Ottawa"},
-
-            {"perguntageografia": "Qual destes países não possui litoral?",
-             "opcoesgeografia": ["Bolívia", "Portugal", "Tailândia", "Austrália"],
-             "respostageografia": "Bolívia"},
-
-            {"perguntageografia": "Qual é o nome do canal que liga o Oceano Atlântico ao Oceano Pacífico??",
-             "opcoesgeografia": ["Canal de Suez", "Canal da Mancha", "Canal do Panamá", "Canal do Golfo"],
-             "respostageografia": "Canal do Panamá"},
+        self.perguntasrock = [
+            {"perguntarock": "Qual grupo de rock britânico lançou o álbum 'The Wall' em 1979?",
+             "opcoesrock": ["Pink Floyd", "The Rolling Stones", "The Who", "Rush"],
+             "respostarock": "Pink Floyd"},
             
-            {"perguntageografia": "Qual o país mais populoso do mundo?",
-             "opcoesgeografia": ["China", "Índia", "Brasil", "Estados Unidos"],
-             "respostageografia": "China"},
+            {"perguntarock": "Qual banda britânica lançou o álbum 'Sgt. Peppers Lonely Hearts Club Band', em 1967?",
+             "opcoesrock": ["Led Zeppelin", "Queen", "The Beatles", "The Doors"],
+             "respostarock": "The Beatles"},
+
+            {"perguntarock": "Qual é o nome do álbum clássico do Nirvana que ajudou a popularizar o grunge em 1991?",
+             "opcoesrock": ["Abbey Road", "Back in Black", "Ten", "Nevermind"],
+             "respostarock": "Nevermind"},
+
+            {"perguntarock": "Qual banda é famosa pelo hit 'Stairway to Heaven'?",
+             "opcoesrock": ["Pearl Jam", "U2", "Led Zeppelin", "Guns N' Roses"],
+             "respostarock": "Led Zeppelin"},
+
+            {"perguntarock": "Qual banda de rock dos anos 80 é famosa pelo álbum 'Thriller' e a canção 'Billie Jean'",
+             "opcoesrock": ["America", "Supertramp", "The Police", "Não é uma banda, é o Michael Jackson"],
+             "respostarock": "Não é uma banda, é o Michael Jackson"},
             
-            {"perguntageografia": "Qual é o nome da maior montanha da África?",
-             "opcoesgeografia": ["Atlas", "Kilimanjaro", "Rwenzori", "Evereste"],
-             "respostageografia": "Kilimanjaro"},
+
+            
         ]
 
 
         shuffle(self.perguntas)
-        shuffle(self.perguntasgeografia)
+        shuffle(self.perguntasrock)
         self.indice_pergunta = 0
-        self.indice_pergunta_geo = 0
-        self.pontuacao_geo = 0
+        self.indice_pergunta_rock = 0
+        self.pontuacao_rock = 0
         self.dialog = None
         self.pontuacao = 0
         self.tentativas = 0
@@ -409,18 +444,18 @@ class QuizApp(MDApp):
             self.animar_botao(resposta_botao, True)
             self.show_dialog('Resposta correta!!')
             self.pontuacao += 1
-            Clock.schedule_once(self.proxima_pergunta, 1)
+            Clock.schedule_once(self.proxima_pergunta, 1.6)
             self.tentativas = 0
         else:
             self.animar_botao(resposta_botao, False)
             self.tentativas += 1
-            if self.tentativas == self.maxtentativas:
+            if self.tentativas >= self.maxtentativas:
                 self.show_dialog('Você excedeu o limite de tentativas, passando para a próxima pergunta!')
                 self.tentativas = 0
-                Clock.schedule_once(self.proxima_pergunta, 1)
+                Clock.schedule_once(self.proxima_pergunta, 1.6)
             else:
                 self.show_dialog('Resposta errada, você tem mais uma chance!')
-                Clock.schedule_once(self.fechar_dialog, 1)
+                Clock.schedule_once(self.fechar_dialog, 1.6)
 
     def proxima_pergunta(self, *args):
         if self.dialog:
@@ -474,63 +509,82 @@ class QuizApp(MDApp):
         self.dialog.open()
 
 
-    def carregar_pergunta_geo(self):
-        if self.indice_pergunta_geo >= len(self.perguntasgeografia):
+    def carregar_pergunta_rock(self):
+        if self.indice_pergunta_rock >= len(self.perguntasrock):
             return
 
-        tela_geo = self.root.get_screen('geo')
-        info_pergunta_geo = self.perguntasgeografia[self.indice_pergunta_geo]
+        tela_rock = self.root.get_screen('rock')
+        info_pergunta_rock = self.perguntasrock[self.indice_pergunta_rock]
 
-        pergunta_formatada = f"{info_pergunta_geo['perguntageografia']}"
-        tela_geo.ids.perguntageo.text = pergunta_formatada
-        tela_geo.ids.contadorgeo.text = f"Pergunta {self.indice_pergunta_geo + 1}/{len(self.perguntasgeografia)}"
+        pergunta_formatada = f"{info_pergunta_rock['perguntarock']}"
+        tela_rock.ids.perguntarock.text = pergunta_formatada
+        tela_rock.ids.contadorrock.text = f"Pergunta {self.indice_pergunta_rock + 1}/{len(self.perguntasrock)}"
 
-        opcoes_geo = info_pergunta_geo['opcoesgeografia']
-        botoes_geo = [tela_geo.ids.opcao1geo, tela_geo.ids.opcao2geo, tela_geo.ids.opcao3geo, tela_geo.ids.opcao4geo]
+        opcoes_rock = info_pergunta_rock['opcoesrock']
+        botoes_rock = [tela_rock.ids.opcao1rock, tela_rock.ids.opcao2rock, tela_rock.ids.opcao3rock, tela_rock.ids.opcao4rock]
 
-        for i, opcaog in enumerate(opcoes_geo):
-            botoes_geo[i].text = opcaog
-            botoes_geo[i].size_hint_x = None
-            botoes_geo[i].width = max(200, 40 + 10 * len(opcaog))
+        for i, opcaorock in enumerate(opcoes_rock):
+            botoes_rock[i].text = opcaorock
+            
 
 
-    def checar_resposta_geo(self, answer_id):
-        if self.indice_pergunta_geo >= len(self.perguntasgeografia):
+    def checar_resposta_rock(self, answer_id):
+        if self.indice_pergunta_rock >= len(self.perguntasrock):
             return
-        answer = self.root.get_screen('geo').ids[answer_id].text
-        resposta_correta = self.perguntasgeografia[self.indice_pergunta_geo]['respostageografia']
+    
+        tela_rock = self.root.get_screen('rock')
+        resposta_botao_rock = tela_rock.ids[answer_id]
+        answer = resposta_botao_rock.text
+        resposta_correta = self.perguntasrock[self.indice_pergunta_rock]['respostarock']
 
         if answer == resposta_correta:
+            self.animar_botao_rock(resposta_botao_rock, True)
             self.show_dialog('Resposta correta!!')
-            self.pontuacao_geo += 1
-            Clock.schedule_once(self.proxima_pergunta_geo, 1)
+            self.pontuacao_rock += 1
+            Clock.schedule_once(self.proxima_pergunta_rock, 1.6)
+            self.tentativas = 0
         else:
-            self.show_dialog('Resposta errada, você tem mais uma chance!')
-            Clock.schedule_once(self.fechar_dialog, 1)
+            self.animar_botao_rock(resposta_botao_rock, False)
+            self.tentativas += 1
+            if self.tentativas >= self.maxtentativas:
+                self.show_dialog('Você excedeu o limite de tentativas, passando para a próxima pergunta!')
+                self.tentativas = 0
+                Clock.schedule_once(self.proxima_pergunta_rock, 1.6)
+            else:
+                self.show_dialog('Resposta errada, você tem mais uma chance!')
+                Clock.schedule_once(self.fechar_dialog, 1.6)
 
-    def proxima_pergunta_geo(self, *args):
+
+    def proxima_pergunta_rock(self, *args):
         if self.dialog:
             self.dialog.dismiss()
-        self.indice_pergunta_geo += 1
+    
+        tela_rock = self.root.get_screen('rock')
+        botoes_rock = [tela_rock.ids.opcao1rock, tela_rock.ids.opcao2rock, tela_rock.ids.opcao3rock, tela_rock.ids.opcao4rock]
+        for botao in botoes_rock:
+            botao.md_bg_color = [0.9, 0.65, 0.35, 1]  
 
-        if self.indice_pergunta_geo < len(self.perguntasgeografia):
-            self.carregar_pergunta_geo()
+        self.indice_pergunta_rock += 1
+
+        if self.indice_pergunta_rock < len(self.perguntasrock):
+            self.carregar_pergunta_rock()
         else:
-            self.mostrar_pontuacao_final_geo()
+            self.mostrar_pontuacao_final_rock()
 
 
-    def mostrar_pontuacao_final_geo(self):
-        total_perguntas_geo = len(self.perguntasgeografia)
-        pontuacao_texto = f'Você acertou {self.pontuacao_geo} de {total_perguntas_geo} perguntas.\n\n'
 
-        if self.pontuacao_geo <= 2:
-            resultado = 'Você é americano por acaso?'
-        elif self.pontuacao_geo <= 5:
+    def mostrar_pontuacao_final_rock(self):
+        total_perguntas_rock = len(self.perguntasrock)
+        pontuacao_texto = f'Você acertou {self.pontuacao_rock} de {total_perguntas_rock} perguntas.\n\n'
+
+        if self.pontuacao_rock <= 2:
+            resultado = 'Infelizmente você não sabe nada sobre rock...'
+        elif self.pontuacao_rock <= 5:
             resultado = 'Está na média, mas pode melhorar...'
-        elif self.pontuacao_geo >= 6:
-            resultado = 'Uau! Parece que você é bom em geografia!'
-        elif self.pontuacao_geo == len(self.perguntasgeografia):
-            resultado = 'Você é viciado em Geoguessr! Parabéns!'
+        elif self.pontuacao_rock >= 6:
+            resultado = 'Uau! Você sabe mesmo sobre rock!!'
+        elif self.pontuacao_rock == len(self.perguntasrock):
+            resultado = 'Você não sabe sobre rock. Você É O ROCK!!!'
 
         texto_dialog = pontuacao_texto + resultado
 
@@ -551,18 +605,18 @@ class QuizApp(MDApp):
         self.root.transition.direction = 'right'
         self.root.current = 'login'
         self.indice_pergunta = 0
-        self.indice_pergunta_geo = 0
+        self.indice_pergunta_rock = 0
         self.pontuacao = 0
-        self.pontuacao_geo = 0
+        self.pontuacao_rock = 0
         self.tentativas = 0
         shuffle(self.perguntas)
-        shuffle(self.perguntasgeografia)
+        shuffle(self.perguntasrock)
         
 
-    def tela_geo(self):
+    def tela_rock(self):
         self.root.transition.direction = 'left'
-        self.root.current = 'geo'
-        self.carregar_pergunta_geo()
+        self.root.current = 'rock'
+        self.carregar_pergunta_rock()
 
     def tela_quiz(self):
         self.root.transition.direction = 'left'
@@ -576,9 +630,9 @@ class QuizApp(MDApp):
         anim.bind(on_complete=lambda *args: Animation(md_bg_color=cor_padrao, duration=1).start(botao))
         anim.start(botao)
 
-    def animar_botao_geo(self, botao, correto):
+    def animar_botao_rock(self, botao, correto):
         cor_resposta = [0, 1, 0, 1] if correto else [1, 0, 0, 1]
-        cor_padrao = [0.9, 0.65, 0.35, 1]
+        cor_padrao = [0.9, 0.65, 0.35, 1]  # Cor padrão ajustada conforme seu código
         anim = Animation(md_bg_color=cor_resposta, duration=1)
         anim.bind(on_complete=lambda *args: Animation(md_bg_color=cor_padrao, duration=1).start(botao))
         anim.start(botao)
